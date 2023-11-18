@@ -1,0 +1,14 @@
+PREFIX ispra-top: <https://w3id.org/italia/env/onto/top/>
+
+CONSTRUCT{ ?s ispra-top:name ?o}
+
+#SELECT DISTINCT ?s ?o
+
+WHERE {
+    SERVICE<https://lod.dati.lombardia.it/sparql>{
+        #fx:properties fx:location "https://lod.dati.lombardia.it/sparql" .
+
+        ?s ispra-top:name ?o .
+    }
+}
+LIMIT 10

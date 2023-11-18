@@ -1,0 +1,15 @@
+PREFIX ispra-top: <https://w3id.org/italia/env/onto/top/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT{ ?s rdfs:label ?o}
+
+#SELECT DISTINCT ?s ?o
+
+WHERE {
+    SERVICE<https://lod.dati.lombardia.it/sparql>{
+        #fx:properties fx:location "https://lod.dati.lombardia.it/sparql" .
+
+        ?s rdfs:label ?o .
+    }
+}
+LIMIT 10
