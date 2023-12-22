@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: ISPRA maps
+  version: 0.1.0
+servers:
+  - url: http://127.0.0.1:5000/api
+paths:
+  /datasets:
+    get:
+      summary: Elenco dei dataset
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+  /bathw:
+    get:
+      summary: Acque di balneazione
+      parameters:
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bathw'
+  /landcs:
+    get:
+      summary: Consumo di suolo
+      parameters:
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Landcs'
+  /regioni:
+    get:
+      summary: Elenco delle regioni
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Regione'
+components:
+  schemas:
+    Regione:
+      type: object
+      properties:
+        nomeregione:
+          type: string
+    Dataset:
+      type: object
+      properties:
+        uri:
+          type: string
+        label:
+          type: string
+    Bathw:
+      type: object
+      properties:
+        quality:
+          type: string
+        region:
+          type: string
+        province:
+          type: string
+        municipality:
+          type: string
+        long:
+          type: string
+        lat:
+          type: string
+    Landcs:
+      type: object
+      properties:
+        comune:
+          type: string
+        percentuale:
+          type: string
+        poly:
+          type: string
